@@ -12,15 +12,17 @@ describe('getElementsByClassName', function() {
 
   it('should match the results of calling the built-in function', function() {
     $('body').addClass('targetClassName');
-    htmlStrings.forEach(function(htmlString) {
+    htmlStrings.forEach(function(htmlString, index) {
       var $rootElement = $(htmlString);
       $('body').append($rootElement);
 
       var result = getElementsByClassName('targetClassName');
       var expectedNodeList = document.getElementsByClassName('targetClassName');
+      console.log('test spec ' + JSON.stringify(expectedNodeList));
       var expectedArray = Array.prototype.slice.apply(expectedNodeList);
       var equality = _.isEqual(result, expectedArray); // why can't we use `===` here?
-      expect(equality).to.equal(FILL_ME_IN);
+      console.log('index' + index);
+      expect(equality).to.equal(true);
 
       $rootElement.remove();
     });
